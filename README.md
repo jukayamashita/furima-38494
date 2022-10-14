@@ -22,46 +22,47 @@
 
 ## products テーブル
 
-| Column             | Type       | Options                |
-| ------------------ | ---------- | ---------------------- |
-| title              | string     | null: false            |
-| category           | string     | null: false            |
-| condition          | string     | null: false            |
-| price              | string     | null: false            |
-| shipping           | string     | null: false            |
-| introduce          | text       | null: false            |
-| user_id            | references | null: false            |
+| Column             | Type       | Options                        |
+| ------------------ | ---------- | ------------------------------ |
+| title              | string     | null: false                    |
+| category           | integer    | null: false                    |
+| condition          | integer    | null: false                    |
+| price              | integer    | null: false                    |
+| shipping           | integer    | null: false                    |
+| days_to_ship       | integer    | null: false                    |
+| user               | references | null: false,foreign_key: true  |
 
 
 ### Association
 
 - has_one :purchase_record
 - belongs_to : user
-- has_one :destination
-
 
 ## purchase_records テーブル
 
 | Column      | Type       | Options                        |
 | ----------- | ---------- | ------------------------------ |
-| product_id  | references | null: false, foreign_key: true |
-| user_id     | references | null: false, foreign_key: true |
+| product     | references | null: false, foreign_key: true |
+| user        | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :product
+- belongs_to :destination
+
+
 
 ## destinations テーブル
 
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
-| zip_code           | string     | null: false,                   |
-| prefecture         | string     | null: false                    |
+| zip_code           | string     | null:false                     |
+| prefecture         | integer    | null: false,foreign_key: true  |
 | city               | string     | null: false                    |
-| address_1          | text       | null: false                    |
-| address_2          | text       | null: false                    |
+| address_1          | string     | null: false                    |
+| address_2          | string     |                                |
 | phone_number       | string     | null: false                    |
-| user_id            | references | null: false, foreign_key: true |
+|purchase_record     |references  | null: false, foreign_key: true |
 
 ### Association
-- belongs_to :product
+- has_one :purchase_record
