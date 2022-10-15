@@ -66,5 +66,6 @@
 | phone_number       | string     | null: false                    |
 |purchase_record     |references  | null: false                    |
 
+
 ### Association
 - belongs_to :purchase_record
