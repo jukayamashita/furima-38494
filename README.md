@@ -64,7 +64,7 @@
 | address_1          | string     | null: false                    |
 | address_2          | string     |                                |
 | phone_number       | string     | null: false                    |
-|purchase_record     |references  | null: false                    |
+|purchase_record     |references  | null: false, foreign_key: true |         |
 
 
 ### Association
