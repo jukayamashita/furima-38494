@@ -25,12 +25,14 @@
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
 | title              | string     | null: false                    |
-| category           | integer    | null: false                    |
-| condition          | integer    | null: false                    |
+| category_id        | integer    | null: false                    |
+| condition_id       | integer    | null: false                    |
 | price              | integer    | null: false                    |
-| shipping           | integer    | null: false                    |
-| days_to_ship       | integer    | null: false                    |
+| prefecture_id      | integer    | null: false                    |
+| days_to_ship_id    | integer    | null: false                    |
 | user               | references | null: false,foreign_key: true  |
+| introduction       | text       | null: false                    |
+| delivery_charge_id | integer    | null: false                    |
 
 
 ### Association
@@ -56,13 +58,13 @@
 
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
-| zip_code           | string     | null:false                     |
-| prefecture         | integer    | null: false,foreign_key: true  |
+| zip_code           | string     | null: false                    |
+| prefecture_id      | integer    | null: false                    |
 | city               | string     | null: false                    |
 | address_1          | string     | null: false                    |
 | address_2          | string     |                                |
 | phone_number       | string     | null: false                    |
-|purchase_record     |references  | null: false, foreign_key: true |
+|purchase_record     |references  | null: false                    |
 
 ### Association
-- has_one :purchase_record
+- belongs_to :purchase_record
