@@ -8,10 +8,10 @@
 | email              | string | null: false, unique: true  |
 | encrypted_password | string | null: false                |
 | first_name         | string | null: false                |
-| family_name        | string | null: false                |
+| last_name          | string | null: false                |
 | first_name_kana    | string | null: false                |
-| family_name_kana   | string | null: false                |
-| birth_day          | date   | null: false                |
+| last_name_kana     | string | null: false                |
+| birth_date         | date   | null: false                |
 | nickname           | string | null: false                |
 
 ### Association
