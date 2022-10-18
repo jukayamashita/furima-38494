@@ -7,8 +7,8 @@ class ProductsController < ApplicationController
   
   # end
 
-  def create
-    @products = Product.new(product_params)
+  # def create
+  #   @products = Product.new(product_params)
 
-  end
+  # end
 end
