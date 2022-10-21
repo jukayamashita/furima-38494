@@ -45,7 +45,7 @@ RSpec.describe Product, type: :model do
       it 'ユーザー登録している人でないと出品できない' do
         @product.user_id = nil
         @product.valid?
-        expect(@product.errors.full_messages).to include('User must exist', "User can't be blank")
+        expect(@product.errors.full_messages).to include('User must exist')
       end
 
       it '１枚画像がないと出品できない' do
