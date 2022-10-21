@@ -16,7 +16,6 @@ class User < ApplicationRecord
     validates :birth_date
     validates :nickname
 
-    
     # has_many :purchase_records
   end
 end

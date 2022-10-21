@@ -29,6 +29,5 @@ class Product < ApplicationRecord
     validates :delivery_charge_id
   end
 
-
   has_one_attached :image
 end
