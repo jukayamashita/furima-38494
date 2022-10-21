@@ -10,7 +10,8 @@ class Product < ApplicationRecord
   belongs_to :prefecture
 
   with_options presence: true do
-    validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
+    validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 } 
+    validates :price, numericality: { with: /^[0-9]+$/ }
     validates :user_id
     validates :image
     validates :title
