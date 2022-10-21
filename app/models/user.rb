@@ -3,6 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  has_many :products
 
   with_options presence: true do
     PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i.freeze
@@ -15,7 +16,6 @@ class User < ApplicationRecord
     validates :birth_date
     validates :nickname
 
-    # has_many :products
     # has_many :purchase_records
   end
 end
