@@ -131,32 +131,31 @@
     
     <% @product.each do |product| %>
       <li class='list'>
-        <%= link_to  "#" do %>
+        <%= link_to product_path(product.id) do %>
         <div class='item-img-content'>
           <%= image_tag product.image, class: "item-img" %>
 
-          <%# 商品が売れていればsold outを表示しましょう %>
-        <%# if product.purchase_records != nil %>
+            <%# 商品が売れていればsold outを表示しましょう %>
+          <%# if product.purchase_records != nil %>
 
-          <%# <div class='sold-out'>
-            <span>Sold Out!!</span>
-          </div> %>
-        <%# end %>
-          <%# //商品が売れていればsold outを表示しましょう %>
-
+            <%# <div class='sold-out'>
+              <span>Sold Out!!</span>
+            </div> %>
+          <%# end %>
+            <%# //商品が売れていればsold outを表示しましょう %>
         </div>
-        <div class='item-info'>
-          <h3 class='item-name'>
-            <%= product.title %>
-          </h3>
-          <div class='item-price'>
-            <span><%= product.price %>円<br><%= product.delivery_charge.name %></span>
-            <div class='star-btn'>
-              <%= image_tag "star.png", class:"star-icon" %>
-              <span class='star-count'>0</span>
+            <div class='item-info'>
+              <h3 class='item-name'>
+                <%= product.title %>
+              </h3>
+              <div class='item-price'>
+                <span><%= product.price %>円<br><%= product.delivery_charge.name %></span>
+                <div class='star-btn'>
+                  <%= image_tag "star.png", class:"star-icon" %>
+                  <span class='star-count'>0</span>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
         <% end %>
       </li>
     <% end %>
