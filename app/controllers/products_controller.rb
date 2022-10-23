@@ -29,7 +29,7 @@ class ProductsController < ApplicationController
       redirect_to root_path
     end
   end
-  
+
   def update
     @product = Product.find(params[:id])
     @product.update(product_params)
@@ -39,6 +39,7 @@ class ProductsController < ApplicationController
       render 'edit'
     end
   end
+
   private
 
   def product_params
