@@ -2,7 +2,9 @@ require 'rails_helper'
 
 RSpec.describe DestinationPurchaseRecord, type: :model do
   before do
-    @destination_purchase_record = FactoryBot.build(:destination_purchase_record)
+    user = FactoryBot.create(:user)
+    product = FactoryBot.create(:product)
+    @destination_purchase_record = FactoryBot.build(:destination_purchase_record, user_id: user.id, product_id: product.id)
   end
 
   describe '配送先情報の保存' do
@@ -58,8 +60,7 @@ RSpec.describe DestinationPurchaseRecord, type: :model do
       it '郵便番号が空だと保存できないこと' do
         @destination_purchase_record.zip_code = nil
         @destination_purchase_record.valid?
-        expect(@destination_purchase_record.errors.full_messages).to include("Zip code can't be blank",
-                                                                             'Zip code is invalid. Include hyphen(-)')
+        expect(@destination_purchase_record.errors.full_messages).to include("Zip code can't be blank")
       end
       it '郵便番号にハイフンがないと保存できないこと' do
         @destination_purchase_record.zip_code = 1_234_567
@@ -105,6 +106,12 @@ RSpec.describe DestinationPurchaseRecord, type: :model do
         @destination_purchase_record.token = nil
         @destination_purchase_record.valid?
         expect(@destination_purchase_record.errors.full_messages).to include("Token can't be blank")
+      end
+
+      it '電話番号が9桁以下だと保存できないこと' do
+        @destination_purchase_record.phone_number = 123_321
+        @destination_purchase_record.valid?
+        expect(@destination_purchase_record.errors.full_messages).to include('Phone number is invalid')
       end
     end
   end

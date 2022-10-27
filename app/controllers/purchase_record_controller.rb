@@ -1,8 +1,9 @@
 class PurchaseRecordController < ApplicationController
   before_action :authenticate_user!
+  before_action :items_item, only: [:index, :create]
 
   def index
-    @product = Product.find(params[:product_id])
+    items_item
     @destination_purchase_record = DestinationPurchaseRecord.new
     if @product.user_id == current_user.id || @product.purchase_record.present?
       redirect_to root_path
@@ -12,7 +13,7 @@ class PurchaseRecordController < ApplicationController
   end
 
   def create
-    @product = Product.find(params[:product_id])
+    items_item
     @destination_purchase_record = DestinationPurchaseRecord.new(destination_params)
     if @destination_purchase_record.valid?
       pay_item
@@ -30,6 +31,11 @@ class PurchaseRecordController < ApplicationController
       user_id: current_user.id, product_id: params[:product_id], token: params[:token]
     )
   end
+
+  def items_item
+    @product = Product.find(params[:product_id])
+  end
+
 
   def pay_item
     Payjp.api_key = ENV['PAYJP_SECRET_KEY']
