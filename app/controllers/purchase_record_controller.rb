@@ -3,7 +3,6 @@ class PurchaseRecordController < ApplicationController
   before_action :items_item, only: [:index, :create]
 
   def index
-    items_item
     @destination_purchase_record = DestinationPurchaseRecord.new
     if @product.user_id == current_user.id || @product.purchase_record.present?
       redirect_to root_path
@@ -13,7 +12,6 @@ class PurchaseRecordController < ApplicationController
   end
 
   def create
-    items_item
     @destination_purchase_record = DestinationPurchaseRecord.new(destination_params)
     if @destination_purchase_record.valid?
       pay_item
