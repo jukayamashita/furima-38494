@@ -13,8 +13,8 @@ class DestinationPurchaseRecord
     validates :address_1
     validates :phone_number, format: { with: /\A[0-9]{11}\z/, message: 'is invalid' }
 
-    # # トークン
-    # validates :token, presence: true
+    # トークン
+     validates :token, presence: true
   end
 
   def save

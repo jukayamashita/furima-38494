@@ -101,11 +101,11 @@ RSpec.describe DestinationPurchaseRecord, type: :model do
         @destination_purchase_record.valid?
         expect(@destination_purchase_record.errors.full_messages).to include('Phone number is invalid')
       end
-      # it 'トークンが空だと保存できないこと' do
-      #   @destination_purchase_record.token = nil
-      #   @destination_purchase_record.valid?
-      #   expect(@destination_purchase_record.errors.full_messages).to include("Token can't be blank")
-      # end
+      it 'トークンが空だと保存できないこと' do
+        @destination_purchase_record.token = nil
+        @destination_purchase_record.valid?
+        expect(@destination_purchase_record.errors.full_messages).to include("Token can't be blank")
+      end
     end
   end
 end
