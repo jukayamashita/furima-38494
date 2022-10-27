@@ -39,10 +39,9 @@ RSpec.describe DestinationPurchaseRecord, type: :model do
         expect(@destination_purchase_record).to be_valid
       end
       it '電話番号が11番桁以内かつハイフンなしであれば保存できる' do
-        @destination_purchase_record.phone_number = 12345678910
+        @destination_purchase_record.phone_number = 12_345_678_910
         expect(@destination_purchase_record).to be_valid
       end
-    
     end
 
     context '配送先情報の保存ができないとき' do
@@ -59,7 +58,8 @@ RSpec.describe DestinationPurchaseRecord, type: :model do
       it '郵便番号が空だと保存できないこと' do
         @destination_purchase_record.zip_code = nil
         @destination_purchase_record.valid?
-        expect(@destination_purchase_record.errors.full_messages).to include("Zip code can't be blank", "Zip code is invalid. Include hyphen(-)")
+        expect(@destination_purchase_record.errors.full_messages).to include("Zip code can't be blank",
+                                                                             'Zip code is invalid. Include hyphen(-)')
       end
       it '郵便番号にハイフンがないと保存できないこと' do
         @destination_purchase_record.zip_code = 1_234_567

@@ -4,10 +4,10 @@ class PurchaseRecordController < ApplicationController
   def index
     @product = Product.find(params[:product_id])
     @destination_purchase_record = DestinationPurchaseRecord.new
-      if @product.user_id == current_user.id || @product.purchase_record.present?
-        redirect_to root_path
-      else
-        @destination_purchase_record = DestinationPurchaseRecord.new
+    if @product.user_id == current_user.id || @product.purchase_record.present?
+      redirect_to root_path
+    else
+      @destination_purchase_record = DestinationPurchaseRecord.new
     end
   end
 
@@ -16,7 +16,7 @@ class PurchaseRecordController < ApplicationController
     @destination_purchase_record = DestinationPurchaseRecord.new(destination_params)
     if @destination_purchase_record.valid?
       pay_item
-       @destination_purchase_record.save
+      @destination_purchase_record.save
       redirect_to root_path
     else
       render :index
@@ -32,12 +32,11 @@ class PurchaseRecordController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
-      Payjp::Charge.create(
-        amount: @product.price,
-        card: destination_params[:token],
-        currency: 'jpy'  
-      )
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
+    Payjp::Charge.create(
+      amount: @product.price,
+      card: destination_params[:token],
+      currency: 'jpy'
+    )
   end
-
 end
