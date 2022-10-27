@@ -23,7 +23,7 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    if @product.user_id == current_user.id
+    if @product.user_id == current_user.id && @product.purchase_record.nil?
     else
       redirect_to root_path
     end
@@ -41,7 +41,6 @@ class ProductsController < ApplicationController
   def destroy
     if @product.user_id == current_user.id
       @product.destroy
-      redirect_to root_path
     else
       redirect_to root_path
     end
