@@ -40,7 +40,8 @@ RSpec.describe DestinationPurchaseRecord, type: :model do
         @destination_purchase_record.address_2 = nil
         expect(@destination_purchase_record).to be_valid
       end
-      it '電話番号が11番桁以内かつハイフンなしであれば保存できる' do
+      it '電話番号が10桁桁以上11桁かつハイフンなしであれば保存できる' do
+
         @destination_purchase_record.phone_number = 12_345_678_910
         expect(@destination_purchase_record).to be_valid
       end
